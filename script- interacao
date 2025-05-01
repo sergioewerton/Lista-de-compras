@@ -1,0 +1,40 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const itemInput = document.getElementById('item-input');
+    const addButton = document.getElementById('add-button');
+    const shoppingList = document.getElementById('shopping-list');
+
+    addButton.addEventListener('click', function() {
+        const itemText = itemInput.value.trim();
+        if (itemText) {
+            addItemToCart(itemText);
+            itemInput.value = '';
+        }
+    });
+
+    function addItemToCart(item) {
+        const listItem = document.createElement('li');
+        listItem.textContent = item;
+
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.addEventListener('click', function() {
+            shoppingList.removeChild(listItem);
+        });
+
+        listItem.appendChild(removeButton);
+        shoppingList.appendChild(listItem);
+    }
+
+    document.getElementById('add-item-btn').addEventListener('click', function() {
+        const itemInput = document.getElementById('item-input');
+        const itemText = itemInput.value.trim();
+        
+        if (itemText !== '') {
+            const shoppingList = document.getElementById('shopping-list');
+            const listItem = document.createElement('li');
+            listItem.textContent = itemText;
+            shoppingList.appendChild(listItem);
+            itemInput.value = '';
+        }
+    });
+});
